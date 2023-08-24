@@ -1,6 +1,14 @@
 ---
-const { text } = Astro.props
+const { text, riveLink } = Astro.props
 ---
 <div class="w-full bg-gray-800 py-3"> 
-  <p class="text-white text-center">{text}</p>
+  <p class="text-white text-center">
+    {text}
+  </p>
+    {riveLink && 
+      <p class="text-white text-center mt-2">
+        <a href={riveLink} class="underline hover:no-underline">View in Rive</a>
+      </p>
+    }
+ 
 </div>
