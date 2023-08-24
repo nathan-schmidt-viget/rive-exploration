@@ -1,0 +1,29 @@
+---
+import Card from "./Card.astro";
+import CardInfo from "./CardInfo.astro";
+---
+
+<Card>
+  <canvas
+    id="group-pills"
+    width="340"
+    height="240"
+    class="w-full mt-6 mx-4"></canvas>
+  <CardInfo text='Nested Art Boards'/>
+</Card>
+
+<script>
+  import { Rive } from "@rive-app/canvas";
+
+  //Group of pills
+  const groupPills = new Rive({
+    src: "animations/pill.riv",
+    canvas: document.getElementById("group-pills"),
+    autoplay: true,
+    artboard: "pill-gird",
+    stateMachines: "group-state",
+    onLoad: () => {
+      groupPills.resizeDrawingSurfaceToCanvas();
+    },
+  });
+</script>

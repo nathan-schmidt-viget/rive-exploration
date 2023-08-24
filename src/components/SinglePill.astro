@@ -1,0 +1,25 @@
+---
+import Card from "../components/Card.astro";
+import CardInfo from "./CardInfo.astro";
+---
+
+<Card>
+  <canvas id="pill" width="40" height="40" class="w-full"></canvas>
+  <CardInfo text='State Machine: hover, click'/>
+</Card>
+
+<script>
+  import { Rive } from "@rive-app/canvas";
+
+  //Single pill
+  const singlePill = new Rive({
+    src: "animations/pill.riv",
+    canvas: document.getElementById("pill"),
+    artboard: "single-pill",
+    autoplay: true,
+    stateMachines: "single-state",
+    onLoad: () => {
+      singlePill.resizeDrawingSurfaceToCanvas();
+    },
+  });
+</script>

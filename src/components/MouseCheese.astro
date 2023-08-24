@@ -1,0 +1,25 @@
+---
+import Card from "./Card.astro";
+import CardInfo from "./CardInfo.astro";
+---
+
+<Card>
+  <canvas id="mouse_eyes" width="300px" height="300px" class="w-full m-auto"></canvas>
+  <CardInfo text='Pointer Move: align'/>
+</Card>
+
+<script>
+  import { Rive } from "@rive-app/canvas";
+
+  // mouse cheese
+  const mouseEyes = new Rive({
+    src: "animations/demo.riv",
+    canvas: document.getElementById("mouse_eyes"),
+    artboard: "mouse_eyes",
+    autoplay: true,
+    stateMachines: "mouse_eyes",
+    onLoad: () => {
+      mouseEyes.resizeDrawingSurfaceToCanvas();
+    },
+  });
+</script>

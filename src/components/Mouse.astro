@@ -1,0 +1,50 @@
+---
+import Card from "./Card.astro";
+import CardInfo from "./CardInfo.astro";
+---
+
+<Card>
+  <canvas id="mouse" width="384px" height="384px" class="h-96 w-full m-auto"
+  ></canvas>
+  <div class="w-full mx-auto flex justify-center gap-6">
+    <button
+      id="lol"
+      class="px-3 py-2 bg-cyan-600 text-white rounded hover:bg-cyan-700 active:bg-cyan-800"
+      >LOL</button
+    >
+    <button
+      id="surprise"
+      class="px-3 py-2 bg-cyan-600 text-white rounded hover:bg-cyan-700 active:bg-cyan-800"
+      >Shocked</button
+    >
+  </div>
+  <CardInfo text='External DOM buttons'/>
+</Card>
+
+<script>
+  import { Rive } from "@rive-app/canvas";
+
+  const lolButton = document.getElementById("lol");
+  const surpriseButton = document.getElementById("surprise");
+
+  // mouse with external buttons
+  const mouse = new Rive({
+    src: "animations/demo.riv",
+    canvas: document.getElementById("mouse"),
+    stateMachines: "mouse",
+    onLoad: () => {
+      mouse.resizeDrawingSurfaceToCanvas();
+      mouse.play("idle");
+    },
+  });
+
+  lolButton.onclick = () =>
+    mouse.playingAnimationNames.includes("lol")
+      ? mouse.pause("lol")
+      : mouse.play("lol");
+
+  surpriseButton.onclick = () =>
+    mouse.playingAnimationNames.includes("surprise")
+      ? mouse.stop("surprise")
+      : mouse.play("surprise");
+</script>

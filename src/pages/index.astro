@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SinglePill from "../components/SinglePill.astro";
+import GroupPill from "../components/GroupPill.astro";
+import Mouse from "../components/Mouse.astro";
+import MouseCheese from "../components/MouseCheese.astro";
+import Ball from "../components/Ball.astro";
+
+const title = 'Rive Exploration'
+---
+
+<Layout title={title}>
+  <main class="max-w-screen-lg mx-auto mb-12">
+    <h1 class="text-center text-gray-900 my-12 text-5xl">{title}</h1>
+    <ul class="grid grid-cols-2 md:grid-cols-2 gap-6">
+      <SinglePill />
+      <GroupPill />
+      <Mouse />
+      <MouseCheese />
+      <Ball />
+    </ul>
+  </main>
+</Layout>
