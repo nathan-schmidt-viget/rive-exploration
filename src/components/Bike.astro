@@ -1,0 +1,45 @@
+---
+import Card from "./Card.astro";
+import CardInfo from "./CardInfo.astro";
+---
+
+<Card>
+  <canvas
+    id="bike"
+    width="400px"
+    height="400px"
+    class="w-full m-auto cursor-grabbing"></canvas>
+  <CardInfo text="State Machine: update scroll input" />
+</Card>
+
+<script>
+  import { Rive } from "@rive-app/canvas";
+
+  let scrollTrigger;
+  let pageHeight = window.document.body.clientHeight;
+
+  // mouse cheese
+  const bike = new Rive({
+    src: "animations/demo.riv",
+    canvas: document.getElementById("bike"),
+    artboard: "bike_spin",
+    autoplay: true,
+    stateMachines: "bike_scroll",
+    onLoad: () => {
+      bike.resizeDrawingSurfaceToCanvas();
+      const scrollInputs = bike.stateMachineInputs("bike_scroll");
+      // Find the input you want to set a value for
+      scrollTrigger = scrollInputs[0];
+    },
+  });
+
+  window.document.addEventListener("scroll", (event) => {
+    const pos = document.documentElement.scrollTop;
+    const calcHeight =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+    const scrollValue = Math.round((pos * 100) / calcHeight);
+
+    scrollTrigger.value = scrollValue;
+  });
+</script>
