@@ -14,8 +14,9 @@ import CardInfo from "./CardInfo.astro";
 
 <script>
   import { Rive } from "@rive-app/canvas";
+  import { throttle } from "lodash";
 
-  // mouse cheese
+  // Bike
   const bike = new Rive({
     src: "animations/demo.riv",
     canvas: document.getElementById("bike"),
@@ -29,17 +30,14 @@ import CardInfo from "./CardInfo.astro";
 
   function moveBike() {
     const scrollInputs = bike.stateMachineInputs("bike_scroll");
-    const pos = document.documentElement.scrollTop;
+    const documentWrapper = document.documentElement;
+    const pos = documentWrapper.scrollTop;
     const calcHeight =
-      document.documentElement.scrollHeight -
-      document.documentElement.clientHeight;
+      documentWrapper.scrollHeight - documentWrapper.clientHeight;
     const scrollValue = Math.round((pos * 100) / calcHeight);
 
     scrollInputs[0].value = scrollValue;
   }
 
-  //TODO throttle scroll
-  window.document.addEventListener("scroll", (event) => {
-    moveBike();
-  });
+  window.addEventListener("scroll", throttle(moveBike(), 250));
 </script>

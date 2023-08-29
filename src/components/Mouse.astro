@@ -18,7 +18,7 @@ import CardInfo from "./CardInfo.astro";
       >Shocked</button
     >
   </div>
-  <CardInfo text='External DOM buttons'/>
+  <CardInfo text="External DOM buttons" />
 </Card>
 
 <script>
@@ -32,9 +32,9 @@ import CardInfo from "./CardInfo.astro";
     src: "animations/demo.riv",
     canvas: document.getElementById("mouse"),
     stateMachines: "mouse",
+    autoplay: true,
     onLoad: () => {
       mouse.resizeDrawingSurfaceToCanvas();
-      mouse.play("idle");
     },
   });
 
