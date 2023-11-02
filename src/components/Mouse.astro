@@ -45,6 +45,6 @@ import CardInfo from "./CardInfo.astro";
 
   surpriseButton.onclick = () =>
     mouse.playingAnimationNames.includes("surprise")
-      ? mouse.stop("surprise")
+      ? mouse.pause("surprise")
       : mouse.play("surprise");
 </script>

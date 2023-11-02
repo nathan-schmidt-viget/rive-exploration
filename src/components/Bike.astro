@@ -39,5 +39,7 @@ import CardInfo from "./CardInfo.astro";
     scrollInputs[0].value = scrollValue;
   }
 
-  window.addEventListener("scroll", throttle(moveBike(), 250));
+  window.document.addEventListener("scroll", () => {
+    throttle(moveBike(), 250);
+  });
 </script>
